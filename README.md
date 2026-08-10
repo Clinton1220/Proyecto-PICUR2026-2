@@ -1,4 +1,6 @@
-# GeoGuardian AI
+# Proyecto-PICUR2026-2
+
+## GeoGuardian AI
 
 GeoGuardian AI es un proyecto orientado al monitoreo preventivo de zonas con riesgo geologico. La propuesta combina una aplicacion movil, sensores IoT, analisis con inteligencia artificial y material de documentacion para apoyar la deteccion temprana de condiciones de riesgo.
 
