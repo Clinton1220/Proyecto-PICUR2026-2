@@ -1,0 +1,38 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.iml
+
+# Logs and local env
+*.log
+.env
+.env.*
+!.env.example
+
+# Flutter/Dart generated files
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/.pub-cache/
+**/.pub/
+**/build/
+**/coverage/
+**/GeneratedPluginRegistrant.*
+
+# Android/iOS generated files
+**/.gradle/
+**/android/app/debug.apk
+**/android/app/debugandroidTest.apk
+**/android/app/profile.apk
+**/android/app/release.apk
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+
+# Local reports and archives
+**/bugreport-*.zip
+*.tmp

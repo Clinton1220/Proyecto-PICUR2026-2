@@ -1,0 +1,22 @@
+name: geo_guardian
+description: A Flutter UI prototype for the GeoGuardian project.
+publish_to: 'none'
+version: 0.1.0+1
+environment:
+  sdk: ">=2.18.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_map: ^8.3.1
+  geolocator: ^14.0.3
+  latlong2: ^0.9.0
+  shared_preferences: ^2.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
