@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: geouser
+      POSTGRES_PASSWORD: geopass
+      POSTGRES_DB: geodb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: on-failure
+    environment:
+      DATABASE_URL: postgresql://geouser:geopass@postgres:5432/geodb
+      SECRET_KEY: "REPLACE_ME_WITH_STRONG_SECRET"
+      ACCESS_TOKEN_EXPIRE_MINUTES: "60"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
