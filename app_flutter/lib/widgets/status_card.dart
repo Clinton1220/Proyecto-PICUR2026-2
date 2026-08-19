@@ -17,25 +17,25 @@ class StatusCard extends StatelessWidget {
               offset: const Offset(0, 10)),
         ],
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Estado del terreno',
+          Text('Estado del terreno',
               style: TextStyle(color: Colors.black54, fontSize: 14)),
-          const SizedBox(height: 14),
+          SizedBox(height: 14),
           Row(
-            children: const [
+            children: [
               Icon(Icons.shield, color: Color(0xFF35AD56), size: 34),
               SizedBox(width: 14),
               Text('SEGURO',
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
             ],
           ),
-          const SizedBox(height: 10),
-          const Text('Todo normal por ahora',
+          SizedBox(height: 10),
+          Text('Todo normal por ahora',
               style: TextStyle(color: Colors.black54)),
-          const SizedBox(height: 18),
-          const Text('Última actualización: 10:30 a. m.',
+          SizedBox(height: 18),
+          Text('Última actualización: 10:30 a. m.',
               style: TextStyle(color: Colors.black38)),
         ],
       ),

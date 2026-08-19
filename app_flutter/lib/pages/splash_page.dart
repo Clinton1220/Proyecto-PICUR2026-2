@@ -33,13 +33,13 @@ class _SplashPageState extends State<SplashPage> {
             fit: BoxFit.cover,
           ),
           Container(color: Colors.black.withOpacity(0.45)),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 28.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'GeoGuardian',
                   style: TextStyle(
                     color: Colors.white,
@@ -47,16 +47,16 @@ class _SplashPageState extends State<SplashPage> {
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-                const SizedBox(height: 8),
-                const Text(
+                SizedBox(height: 8),
+                Text(
                   'Prevención inteligente de derrumbes',
                   style: TextStyle(
                     color: Colors.white70,
                     fontSize: 18,
                   ),
                 ),
-                const SizedBox(height: 40),
-                const CircularProgressIndicator(
+                SizedBox(height: 40),
+                CircularProgressIndicator(
                   color: Color(0xFF7DD97D),
                 ),
               ],

@@ -12,32 +12,32 @@ class SensorDetailPage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(24),
+      body: const Padding(
+        padding: EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Resumen de sensores',
+            Text('Resumen de sensores',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             _SensorInfoTile(
               label: 'Humedad del suelo',
               value: '65%',
               detail: 'Nivel correcto, sin riego adicional requerido',
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             _SensorInfoTile(
               label: 'Lluvia acumulada',
               value: '0 mm',
               detail: 'No se detectó lluvia registrada en las últimas 6 horas',
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             _SensorInfoTile(
               label: 'Inclinación',
               value: '5°',
               detail: 'Lectura estable. Mantener monitoreo semanal',
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             _SensorInfoTile(
               label: 'Temperatura',
               value: '27°C',

@@ -1,0 +1,8 @@
+{
+  "SMTP_HOST": "smtp.gmail.com",
+  "SMTP_PORT": "587",
+  "SMTP_SSL": "false",
+  "SMTP_USERNAME": "tu-correo@gmail.com",
+  "SMTP_PASSWORD": "abcd efgh ijkl mnop",
+  "SMTP_FROM_NAME": "GeoGuardian AI"
+}

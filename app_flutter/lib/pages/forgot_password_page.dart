@@ -24,17 +24,15 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     setState(() => _emailError = err);
     if (err != null) return;
     setState(() => _loading = true);
-    final ok = await AuthService.instance.sendRecoveryCode(email);
+    final res = await AuthService.instance.sendRecoveryCode(email);
+    if (!mounted) return;
     setState(() => _loading = false);
-    if (!ok) {
-      setState(() {
-        _emailError = 'Correo no registrado o no verificado';
-      });
+    if (!res.ok) {
+      setState(() => _emailError = res.message);
       return;
     }
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Código de recuperación enviado')),
-    );
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(res.message)));
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => ResetPasswordPage(email: email)),
@@ -112,6 +110,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     setState(() => _loading = true);
     final res =
         await AuthService.instance.resetPassword(widget.email, code, pass);
+    if (!mounted) return;
     setState(() => _loading = false);
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(res.message)));

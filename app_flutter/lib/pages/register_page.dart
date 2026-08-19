@@ -40,6 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
     setState(() => _loading = true);
     final res = await AuthService.instance
         .register(_name.text.trim(), email, _pass.text);
+    if (!mounted) return;
     setState(() => _loading = false);
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(res.message)));

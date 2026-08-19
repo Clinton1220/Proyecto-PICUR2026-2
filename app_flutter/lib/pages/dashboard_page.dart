@@ -52,7 +52,7 @@ class DashboardPage extends StatelessWidget {
 }
 
 class _SensorGrid extends StatelessWidget {
-  const _SensorGrid({super.key});
+  const _SensorGrid();
 
   @override
   Widget build(BuildContext context) {

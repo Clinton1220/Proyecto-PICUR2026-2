@@ -11,6 +11,11 @@ Thumbs.db
 .env.*
 !.env.example
 
+# Credenciales SMTP inyectadas con --dart-define-from-file
+dart_define.json
+**/dart_define.json
+!**/dart_define.example.json
+
 # Flutter/Dart generated files
 **/.dart_tool/
 **/.flutter-plugins

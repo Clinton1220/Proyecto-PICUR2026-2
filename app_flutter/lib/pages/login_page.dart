@@ -21,13 +21,14 @@ class _LoginPageState extends State<LoginPage> {
   String? _emailError;
   String? _passError;
   bool _loading = false;
+  String? _socialLoading;
   bool _passVisible = false;
 
   Widget _socialButton({
     required String label,
     required Widget logo,
     required Color borderColor,
-    required VoidCallback onPressed,
+    required VoidCallback? onPressed,
   }) {
     return OutlinedButton(
       onPressed: onPressed,
@@ -60,6 +61,7 @@ class _LoginPageState extends State<LoginPage> {
     final email = _emailCtrl.text.trim();
     final pass = _passCtrl.text;
     final res = await AuthService.instance.login(email, pass);
+    if (!mounted) return;
     setState(() => _loading = false);
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(res.message)));
@@ -75,6 +77,23 @@ class _LoginPageState extends State<LoginPage> {
         MaterialPageRoute(builder: (_) => VerifyEmailPage(email: email)),
       );
     }
+  }
+
+  Future<void> _submitSocial(String provider) async {
+    setState(() => _socialLoading = provider);
+    final res = provider == 'google'
+        ? await AuthService.instance.loginWithGoogle()
+        : await AuthService.instance.loginWithFacebook();
+    if (!mounted) return;
+    setState(() => _socialLoading = null);
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(res.message)));
+    if (!res.ok) return;
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const HomePage()),
+    );
   }
 
   @override
@@ -163,14 +182,9 @@ class _LoginPageState extends State<LoginPage> {
                     child: _socialButton(
                       label: 'Google',
                       borderColor: Colors.grey,
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                                'Inicio con Google no disponible en la demo.'),
-                          ),
-                        );
-                      },
+                      onPressed: _loading || _socialLoading != null
+                          ? null
+                          : () => _submitSocial('google'),
                       logo: Container(
                         width: 32,
                         height: 32,
@@ -180,11 +194,18 @@ class _LoginPageState extends State<LoginPage> {
                           border: Border.all(color: Colors.grey.shade300),
                         ),
                         alignment: Alignment.center,
-                        child: const Text('G',
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18)),
+                        child: _socialLoading == 'google'
+                            ? const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child:
+                                    CircularProgressIndicator(strokeWidth: 2),
+                              )
+                            : const Text('G',
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18)),
                       ),
                     ),
                   ),
@@ -193,14 +214,9 @@ class _LoginPageState extends State<LoginPage> {
                     child: _socialButton(
                       label: 'Facebook',
                       borderColor: const Color(0xFF1877F2),
-                      onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                                'Inicio con Facebook no disponible en la demo.'),
-                          ),
-                        );
-                      },
+                      onPressed: _loading || _socialLoading != null
+                          ? null
+                          : () => _submitSocial('facebook'),
                       logo: Container(
                         width: 32,
                         height: 32,
@@ -209,8 +225,15 @@ class _LoginPageState extends State<LoginPage> {
                           shape: BoxShape.circle,
                         ),
                         alignment: Alignment.center,
-                        child: const Icon(Icons.facebook,
-                            color: Colors.white, size: 18),
+                        child: _socialLoading == 'facebook'
+                            ? const SizedBox(
+                                width: 16,
+                                height: 16,
+                                child: CircularProgressIndicator(
+                                    strokeWidth: 2, color: Colors.white),
+                              )
+                            : const Icon(Icons.facebook,
+                                color: Colors.white, size: 18),
                       ),
                     ),
                   ),

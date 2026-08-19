@@ -32,7 +32,7 @@ class _RiskMapPageState extends State<RiskMapPage> {
     final hasPermission = await _checkPermission();
     if (!hasPermission) return;
 
-    final settings = const LocationSettings(
+    const settings = LocationSettings(
       accuracy: LocationAccuracy.best,
       distanceFilter: 10,
     );
@@ -210,9 +210,9 @@ class _RiskMapPageState extends State<RiskMapPage> {
               ),
             ),
             const SizedBox(height: 16),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 StatusDot(color: Color(0xFF4CAF50), label: 'Seguro'),
                 StatusDot(color: Color(0xFFFFC107), label: 'Precaución'),
                 StatusDot(color: Color(0xFFF44336), label: 'Riesgo alto'),

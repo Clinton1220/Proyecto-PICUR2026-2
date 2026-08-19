@@ -93,9 +93,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage>
     });
     final result =
         await AuthService.instance.verifyRegistrationCode(widget.email, _code);
+    if (!mounted) return;
     setState(() => _loading = false);
 
-    if (!mounted) return;
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(result.message)));
     if (!result.ok) return;
@@ -109,12 +109,12 @@ class _VerifyEmailPageState extends State<VerifyEmailPage>
     });
     final result =
         await AuthService.instance.resendVerificationCode(widget.email);
+    if (!mounted) return;
     setState(() {
       _loading = false;
       _statusMessage = result.ok ? 'Código reenviado' : result.message;
     });
 
-    if (!mounted) return;
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(result.message)));
   }
